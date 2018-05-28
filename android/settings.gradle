@@ -1,0 +1,3 @@
+rootProject.name = 'fpm_app_reactnative'
+
+include ':app'
