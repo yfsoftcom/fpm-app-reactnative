@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 
 import BasePage from './BasePage'
-import Line from './Component/Line'
+import Line from '../Component/Line'
 
 export default class HomePage extends BasePage {
     static navigationOptions = {

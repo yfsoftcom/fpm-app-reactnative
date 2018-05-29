@@ -1,9 +1,9 @@
 'use strict';
 
 import React, { Component } from 'react'
-import commonStyles, { colors } from './styles'
+import commonStyles, { colors } from '../styles'
 import { SafeAreaView } from 'react-navigation'
-import PlaceholderView from './Component/PlaceholderView'
+import PlaceholderView from '../Component/PlaceholderView'
 
 export default class BasePage extends Component {
 

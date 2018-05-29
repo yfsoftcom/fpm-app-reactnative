@@ -3,9 +3,10 @@
 import React, { Component } from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import HomePage from './HomePage'
-import WebViewPage from './WebViewPage'
-import NotificationPage from './NotificationPage'
+import HomePage from './Page/HomePage'
+import WebViewPage from './Page/WebViewPage'
+import NotificationPage from './Page/NotificationPage'
+import SettingPage from './Page/SettingPage'
 /**
  *页面列表
  */
@@ -13,6 +14,7 @@ const PageList = {
   home: { screen: HomePage },
   webview: { screen: WebViewPage },
   notification: { screen: NotificationPage },
+  setting: { screen: SettingPage },
 };
 
 /**
@@ -34,3 +36,5 @@ const NavigatorConfig = ( rootName ) => {
 export const HomeStack = StackNavigator (PageList, NavigatorConfig('home'));
 
 export const NotificationStack = StackNavigator (PageList, NavigatorConfig('notification'));
+
+export const SettingStack = StackNavigator (PageList, NavigatorConfig('setting'));

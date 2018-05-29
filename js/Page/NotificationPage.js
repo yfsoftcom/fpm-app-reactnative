@@ -7,8 +7,8 @@ import {
 } from 'react-native';
 
 import BasePage from './BasePage'
-import Line from './Component/Line'
-import { colors } from './styles'
+import Line from '../Component/Line'
+import { colors } from '../styles'
 
 export default class NotificationPage extends BasePage {
     static navigationOptions = {
