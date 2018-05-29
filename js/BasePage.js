@@ -6,13 +6,6 @@ import { SafeAreaView } from 'react-navigation'
 import PlaceholderView from './Component/PlaceholderView'
 
 export default class BasePage extends Component {
-    // static navigationOptions = ({ navigation }) => {
-    //     const { params } = navigation.state;
-    //
-    //     return {
-    //         headerTitle: '热点',
-    //     };
-    // };
 
     constructor(props) {
         super(props);

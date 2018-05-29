@@ -3,12 +3,16 @@
 import React, { Component } from 'react'
 import { StackNavigator } from 'react-navigation'
 
-import HomePage from './HomePage';
+import HomePage from './HomePage'
+import WebViewPage from './WebViewPage'
+import NotificationPage from './NotificationPage'
 /**
  *页面列表
  */
 const PageList = {
   home: { screen: HomePage },
+  webview: { screen: WebViewPage },
+  notification: { screen: NotificationPage },
 };
 
 /**
@@ -27,4 +31,6 @@ const NavigatorConfig = ( rootName ) => {
 /**
  * 首页导航
  */
-export const HomeNavigator = StackNavigator (PageList, NavigatorConfig('home'));
+export const HomeStack = StackNavigator (PageList, NavigatorConfig('home'));
+
+export const NotificationStack = StackNavigator (PageList, NavigatorConfig('notification'));

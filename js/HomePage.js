@@ -4,17 +4,12 @@ import {
     SectionList,
     View,
     Text,
+    TouchableHighlight,
+    TouchableNativeFeedback
 } from 'react-native';
 
 import BasePage from './BasePage'
 import Line from './Component/Line'
-// import NewsListItem from '../../Common/MKNewsListItem';
-// import {Line} from '../../Common/MKCommonComponents';
-// import MKNewsSection from '../../Common/MKNewsSection';
-// import MKServices from '../../Services/MKServices';
-// import MKSwiper from '../../Common/MKSwiper';
-
-// import {layout} from "../../Config/MKConstants";
 
 export default class HomePage extends BasePage {
     static navigationOptions = {
@@ -33,6 +28,15 @@ export default class HomePage extends BasePage {
                         { key: 'Version', val: 'v2.4.6'},
                         { key: 'Hostname', val: 'localhost'},
                         { key: 'Port', val: '9999'},
+                        { key: 'StartAt1', val: '05-29 12:00'},
+                        { key: 'Version1', val: 'v2.4.6'},
+                        { key: 'Hostname1', val: 'localhost'},
+                        { key: 'Port1', val: '9999'},
+                        { key: 'StartAt2', val: '05-29 12:00'},
+                        { key: 'Version2', val: 'v2.4.6'},
+                        { key: 'Hostname2', val: 'localhost'},
+                        { key: 'Port2', val: '9999'},
+                        
                     ]
                 },
             ],
@@ -98,11 +102,17 @@ export default class HomePage extends BasePage {
     }
 
     renderItem(item) {
+        const { navigate } = this.props.navigation;
         return (
-            <View style={[ styles.item ]}>
-                <Text style={[ styles.itemTitle ]}>{ item.item.key }</Text>
-                <Text style={[ styles.itemNote]}>{ item.item.val }</Text>
-            </View>
+            <TouchableHighlight
+                onPress={() =>
+                        navigate('webview', { url: 'http://www.baidu.com', title: 'baidu.com' })
+                    }>
+                <View style={[ styles.item ]}>
+                    <Text style={[ styles.itemTitle ]}>{ item.item.key }</Text>
+                    <Text style={[ styles.itemNote]}>{ item.item.val }</Text>
+                </View>
+            </TouchableHighlight>
         )
     }
 
@@ -114,11 +124,11 @@ export default class HomePage extends BasePage {
     render () {
         return super.render(
             <View style={[ styles.container ]}>
-                <Text style={[ styles.h3 ]}>Primary Info</Text>
+                {/* <Text style={[ styles.h3 ]}>Primary Info</Text> */}
                 <SectionList
                     sections={ this.state.sections }
-                    renderItem={ this.renderItem }
-                    renderSectionHeader={ this.renderSectionHeader }
+                    renderItem={ this.renderItem.bind(this) }
+                    renderSectionHeader={ this.renderSectionHeader.bind(this) }
                     ItemSeparatorComponent={ Line }
                     />
             </View>
