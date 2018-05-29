@@ -7,6 +7,7 @@ import HomePage from './Page/HomePage'
 import WebViewPage from './Page/WebViewPage'
 import NotificationPage from './Page/NotificationPage'
 import SettingPage from './Page/SettingPage'
+import PostPage from './Page/PostPage'
 /**
  *页面列表
  */
@@ -15,6 +16,7 @@ const PageList = {
   webview: { screen: WebViewPage },
   notification: { screen: NotificationPage },
   setting: { screen: SettingPage },
+  post: { screen: PostPage },
 };
 
 /**
@@ -38,3 +40,5 @@ export const HomeStack = StackNavigator (PageList, NavigatorConfig('home'));
 export const NotificationStack = StackNavigator (PageList, NavigatorConfig('notification'));
 
 export const SettingStack = StackNavigator (PageList, NavigatorConfig('setting'));
+
+export const PostStack = StackNavigator (PageList, NavigatorConfig('post'));

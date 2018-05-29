@@ -3,16 +3,17 @@ import {
     TabBarIOS,
     Image,
 } from 'react-native';
-import Icon from 'react-native-vector-icons/Ionicons'
+import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { layout, colors } from './styles'
-import { HomeStack, NotificationStack, SettingStack } from './Nav'
+import { HomeStack, NotificationStack, SettingStack, PostStack } from './Nav'
 import { createBottomTabNavigator, TabBarBottom } from 'react-navigation'
 
 
 export default createBottomTabNavigator(
     {
         Console: HomeStack,
+        Post: PostStack,
         Notification: NotificationStack,
         Setting: SettingStack,
     },
@@ -20,25 +21,29 @@ export default createBottomTabNavigator(
         navigationOptions: ({ navigation }) => ({
             tabBarIcon: ({ focused, tintColor }) => {
                 const { routeName } = navigation.state;
-                let iconName
+                let iconName = 'home' //,tintColor = focused? colors.blue: colors.lightGray
+                
                 switch(routeName){
                     case 'Console':
-                        iconName = `ios-home${focused ? '' : '-outline'}`
+                        iconName = 'home'
+                        break
+                    case 'Post':
+                        iconName = 'file'
                         break
                     case 'Setting':
-                        iconName = `ios-setting${focused ? '' : '-outline'}`
+                        iconName = 'cogs'
                         break
                     case 'Notification':
-                        iconName = `ios-information-circle${focused ? '' : '-outline'}`
+                        iconName = 'envelope'
                         break
                 }
-                return (<Icon name={'ios-home'} size={30} color={ colors.blue } />)
+                return (<Icon name={ iconName } size={ 24 } color={ tintColor } />)
                 
             },
         }),
         tabBarOptions: {
             activeTintColor: colors.blue,
-            inactiveTintColor: 'gray',
+            inactiveTintColor: colors.textGray,
         },
         tabBarPosition: 'bottom',
         animationEnabled: false,

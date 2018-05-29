@@ -25,6 +25,9 @@ export default class SettingPage extends BasePage {
     render() {
         return (
             <View style={{flex: 1}}>
+                <View>
+                    
+                </View>
                 {/* <SectionList
                     renderItem={({item}) => <ListItem title={item.title} />}
                     renderSectionHeader={({section}) => <H1 title={section.key} />}
