@@ -102,17 +102,11 @@ export default class HomePage extends BasePage {
     }
 
     renderItem(item) {
-        const { navigate } = this.props.navigation;
         return (
-            <TouchableHighlight
-                onPress={() =>
-                        navigate('webview', { url: 'http://www.baidu.com', title: 'baidu.com' })
-                    }>
-                <View style={[ styles.item ]}>
-                    <Text style={[ styles.itemTitle ]}>{ item.item.key }</Text>
-                    <Text style={[ styles.itemNote]}>{ item.item.val }</Text>
-                </View>
-            </TouchableHighlight>
+            <View style={[ styles.item ]}>
+                <Text style={[ styles.itemTitle ]}>{ item.item.key }</Text>
+                <Text style={[ styles.itemNote]}>{ item.item.val }</Text>
+            </View>
         )
     }
 
@@ -146,7 +140,7 @@ const styles = StyleSheet.create({
     },
     container: {
         flex: 1,
-        paddingTop: 12
+        // paddingTop: 4
     },
     sectionHeader: {
         padding: 10,

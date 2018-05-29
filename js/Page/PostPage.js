@@ -5,31 +5,35 @@ import {
     View,
     FlatList,
     H3,
+    TouchableNativeFeedback,
 } from 'react-native';
 
 import BasePage from './BasePage'
 import Line from '../Component/Line'
 import commonStyles, { colors } from '../styles'
+import fpmc from '../Sdk'
 
 class PostItem extends React.PureComponent {
     _onPress = () => {
-      this.props.onPressItem(this.props.id);
+        this.props.onPressItem(this.props);
     };
   
     render() {
       return (
-        <View
-            style={ styles.postItem }
-          {...this.props}
+        <TouchableNativeFeedback
           onPress={this._onPress}
         >
+            <View
+            style={ styles.postItem }
+            {...this.props}>
             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
                 <Text style={ styles.itemAuthor }>{ this.props.author || '无名氏' }</Text>
                 <Text style={ styles.itemCategory }>{ this.props.category || '默认分类' }</Text>
             </View>
             <Text style={ styles.itemTitle }>{ this.props.title }</Text>
             <Text style={ styles.itemSummary}>{ this.props.summary }</Text>
-        </View>
+            </View>
+        </TouchableNativeFeedback>
       )
     }
 }
@@ -58,26 +62,41 @@ export default class PostPage extends BasePage {
     }
 
     componentDidMount(){
-        
+        this._onFresh()
     }
 
     select = {selected: {}};
 
     _keyExtractor = (item, index) => item.id;
-    
-    _onPressItem = (id) => {
-        alert(id)
+
+    _onPressItem = (item) => {
+        const { navigate } = this.props.navigation
+        navigate('webview', { url: item.url || 'http://www.baidu.com', title: item.title || 'baidu.com' })
     };
 
     _onFresh = () => {
         this.setState({
             refreshing: true,
         })
-        setTimeout( ()=>{
+        setTimeout( () => {
             this.setState({
                 refreshing: false,
             })
-        }, 0.5 * 1000)
+        }, 1000)
+        // new fpmc.Func('system.show')
+        //     .invoke({})
+        //     .then(data=>{
+        //         this.setState({
+        //             data,
+        //             refreshing: false,
+        //         })
+        //     })
+        //     .catch(e => {
+        //         this.setState({
+        //            refreshing: false,
+        //         })
+        //         alert(e.message || 'Error')
+        //     })
     }
     _renderItem = ({item}) => (
         <PostItem
