@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.fpm_app_reactnative"
+    package="io.yunplus.fpm.app"
     android:versionCode="1"
     android:versionName="1.0">
 

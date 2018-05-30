@@ -1,4 +1,4 @@
-package com.fpm_app_reactnative;
+package io.yunplus.fpm.app;
 
 import android.app.Application;
 

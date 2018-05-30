@@ -1,4 +1,4 @@
-package com.fpm_app_reactnative;
+package io.yunplus.fpm.app;
 
 import com.facebook.react.ReactActivity;
 
