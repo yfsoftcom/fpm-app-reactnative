@@ -1,6 +1,7 @@
 package io.yunplus.fpm.app;
 
 import com.facebook.react.ReactActivity;
+import android.os.Bundle;
 import cn.jpush.android.api.JPushInterface;
 
 public class MainActivity extends ReactActivity {
