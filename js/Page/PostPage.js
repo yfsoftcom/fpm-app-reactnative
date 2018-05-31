@@ -11,7 +11,7 @@ import {
 import BasePage from './BasePage'
 import Line from '../Component/Line'
 import commonStyles, { colors } from '../styles'
-import fpmc from '../Sdk'
+import fpmc from 'yf-fpm-client-js'
 
 class PostItem extends React.PureComponent {
     _onPress = () => {

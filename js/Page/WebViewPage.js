@@ -9,19 +9,11 @@ import {
 import BasePage from './BasePage'
 import Line from '../Component/Line'
 import { colors } from '../styles'
-import { md5 } from '../kit'
 
 export default class WebViewPage extends BasePage {
     static navigationOptions = ({ navigation }) => {
         return {
             title: navigation.getParam('title', 'NoTitled'),
-            // headerRight: (
-            //     <Button
-            //       onPress={() => alert(md5('123'))}
-            //       title="Info"
-            //       color={ colors.blue }
-            //     />
-            //   ),
         };
     };
 
