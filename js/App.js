@@ -5,7 +5,7 @@ import {
 import TabNavigator from './Tab'
 import fpmc from 'yf-fpm-client-js'
 
-fpmc.init({ mode: 'DEV', appkey: '123123', masterkey: '123123', domain: 'http://192.168.1.108:9999' })
+fpmc.init({ mode: 'PRODUCT', appkey: '123123', masterKey: '123123', domain: 'http://api.yunplus.io' })
 fpmc.ping().then(()=>{
   //
   console.info('online')

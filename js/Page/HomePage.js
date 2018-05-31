@@ -12,6 +12,8 @@ import {
 import JPushModule from 'jpush-react-native'
 import BasePage from './BasePage'
 import Line from '../Component/Line'
+import dayjs from 'dayjs'
+import { Func } from 'yf-fpm-client-js'
 
 export default class HomePage extends BasePage {
     static navigationOptions = {
@@ -22,23 +24,12 @@ export default class HomePage extends BasePage {
         this.state = {
             sections: [
                 {
-                    title: 'OS', data: [ { key: 'CPU', val: 4} , { key: 'MEM', val: '2G'} ]
+                    title: 'OS', data: [ { key: 'platform', val: '-'} , { key: 'CPUS', val: '-'} , { key: 'MEM', val: '-'} ]
                 },
                 {
                     title: 'Server', data: [
-                        { key: 'StartAt', val: '05-29 12:00'},
-                        { key: 'Version', val: 'v2.4.6'},
-                        { key: 'Hostname', val: 'localhost'},
-                        { key: 'Port', val: '9999'},
-                        { key: 'StartAt1', val: '05-29 12:00'},
-                        { key: 'Version1', val: 'v2.4.6'},
-                        { key: 'Hostname1', val: 'localhost'},
-                        { key: 'Port1', val: '9999'},
-                        { key: 'StartAt2', val: '05-29 12:00'},
-                        { key: 'Version2', val: 'v2.4.6'},
-                        { key: 'Hostname2', val: 'localhost'},
-                        { key: 'Port2', val: '9999'},
-                        
+                        { key: 'StartAt', val: '-'},
+                        { key: 'Version', val: '-'},                        
                     ]
                 },
             ],
@@ -97,56 +88,53 @@ export default class HomePage extends BasePage {
         JPushModule.addGetRegistrationIdListener(registrationId => {
           console.log('Device register succeed, registrationId ' + registrationId)
         })
+
+        this.getSystemInfo()
       }
 
-    getNewestNews() {
+      getSystemInfo() {
         this.startLoading({
             refreshing: true,
         });
+        new Func('system.show').invoke({})
+            .then(data => {
+                data = data.data
+                const sections = [
+                    { title: 'OS', 
+                        data: [ 
+                            { key: 'platform', val: data.platform },
+                            { key: 'CPUS', val: data.cpus.length },
+                            { key: 'MEM', val: data.freemem + '/' + data.totalmem + ' M'},
+                        ] 
+                    },
+                    { title: 'Server', 
+                        data: [ 
+                            { key: 'StartAt', val: dayjs(data.startTime).format('MM-DD HH:mm') },
+                            { key: 'Version', val: 'V' + data.server.version },
+                        ] },
+                ]
+                this.setState({
+                    sections
+                })
+                this.stopLoading({
+                    refreshing: false,
+                  })                
+            })
+            .catch(err => {
+                this.stopLoading({
+                    refreshing: false,
+                  })
+                alert(err.message || 'System Error~')
+            })
 
         setTimeout(() => {
-          this.stopLoading({
-            refreshing: false,
-          })
+          
         }, 1 * 1000)
-        // MKServices.requestNewestNews().then((responseData) => {
-        //     let tempData = [{
-        //         key:100,
-        //         data:responseData.stories
-        //     }];
-        //     this.stopLoading({
-        //         sections: tempData,
-        //         rotations: responseData.top_stories,
-        //         lastDate: responseData.date,
-        //         refreshing: false,
-        //     });
 
-        // }).catch((error) => {
-        //     this.requestFailure();
-        //     console.log(error);
-        // });
-    };
-
-    getMoreNews() {
-
-        // MKServices.requestBeforeNews(this.state.lastDate).then((responseData) => {
-
-        //     let tempData = this.state.sections;
-        //     tempData.push({
-        //         key:responseData.date,
-        //         data:responseData.stories
-        //     });
-        //     this.setState({
-        //         sections: tempData,
-        //         lastDate: responseData.date,
-        //     })
-        // }).catch((error) => {
-        //     console.log(error);
-        // });
     };
 
     placeholderOnRefresh() {
-        this.getNewestNews();
+        // this.getNewestNews();
     }
 
     renderItem(item) {
