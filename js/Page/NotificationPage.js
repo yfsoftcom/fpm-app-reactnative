@@ -10,7 +10,7 @@ import {
 import BasePage from './BasePage'
 import Line from '../Component/Line'
 import { colors } from '../styles'
-
+import fpmc from 'yf-fpm-client-js'
 
 class ListItem extends React.PureComponent {
     _onPress = () => {
@@ -46,14 +46,6 @@ export default class NotificationPage extends BasePage {
             refreshing: false,
             data: [
                 { id: 1, title: 'NA', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 2, title: 'NB', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 3, title: 'C', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 11, title: 'A', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 12, title: 'B', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 13, title: 'C', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 21, title: 'A', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 22, title: 'B', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
-                { id: 23, title: 'C', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
             ]
         }
     }
@@ -65,32 +57,35 @@ export default class NotificationPage extends BasePage {
 
     _onPressItem = (item) => {
         const { navigate } = this.props.navigation
-        navigate('webview', { url: item.url || 'http://www.baidu.com', title: item.title || 'baidu.com' })
+        navigate('webview', { url: item.url || 'http://blog.yunplus.io', title: item.title || 'yunplus.io' })
     };
 
     _onFresh = () => {
         this.setState({
             refreshing: true,
         })
-        setTimeout( () => {
+        new fpmc.Func('faker.getList')
+        .invoke({fields: {
+            category: 'lorem.word',
+            title: 'lorem.slug',
+            date: 'date.future',
+            image: 'image.avatar',
+            summary: 'lorem.text',
+            author: 'name.firstName',
+            id: 'random.uuid',
+          }})
+        .then(data=>{
             this.setState({
+                data: data.data,
                 refreshing: false,
             })
-        }, 1000)
-        // new fpmc.Func('system.show')
-        //     .invoke({})
-        //     .then(data=>{
-        //         this.setState({
-        //             data,
-        //             refreshing: false,
-        //         })
-        //     })
-        //     .catch(e => {
-        //         this.setState({
-        //            refreshing: false,
-        //         })
-        //         alert(e.message || 'Error')
-        //     })
+        })
+        .catch(e => {
+            this.setState({
+               refreshing: false,
+            })
+            alert(e.message || 'Error')
+        })
     }
     _renderItem = ({item}) => (
         <ListItem
