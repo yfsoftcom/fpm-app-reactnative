@@ -8,12 +8,14 @@ import WebViewPage from './Page/WebViewPage'
 import NotificationPage from './Page/NotificationPage'
 import SettingPage from './Page/SettingPage'
 import PostPage from './Page/PostPage'
+import BlankTextPage from './Page/BlankTextPage'
 /**
  *页面列表
  */
 const PageList = {
   home: { screen: HomePage },
   webview: { screen: WebViewPage },
+  blankText: { screen: BlankTextPage },
   notification: { screen: NotificationPage },
   setting: { screen: SettingPage },
   post: { screen: PostPage },

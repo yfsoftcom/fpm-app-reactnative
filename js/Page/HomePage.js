@@ -77,8 +77,9 @@ export default class HomePage extends BasePage {
     
         JPushModule.addReceiveOpenNotificationListener(map => {
           const extras = JSON.parse(map.extras)
-          navigate('webview', { url: extras.url || 'http://www.baidu.com', title: map.alertContent || 'baidu.com' })
-          //alert(map.alertContent)
+          navigate('blankText', { title: 'Notification Info', content: map.alertContent })
+        //   alert(JSON.stringify(map))
+        //   alert(map.alertContent)
           // console.log('Opening notification!')
           // console.log('map.extra: ' + map.extras)
           // this.jumpSecondActivity()

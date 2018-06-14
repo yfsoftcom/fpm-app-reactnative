@@ -57,7 +57,7 @@ export default class NotificationPage extends BasePage {
 
     _onPressItem = (item) => {
         const { navigate } = this.props.navigation
-        navigate('webview', { url: item.url || 'http://blog.yunplus.io', title: item.title || 'yunplus.io' })
+        navigate('blankText', { title: item.title, content: item.summary })
     };
 
     _onFresh = () => {
