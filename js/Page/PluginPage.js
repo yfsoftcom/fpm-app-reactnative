@@ -43,7 +43,7 @@ export default class PluginPage extends BasePage {
         this.state = {
             refreshing: false,
             data: [
-                { id: 1, title: 'Wrold Cup 2018', url: 'http://t.zgzcw.com/PageManagerNew/turnToZuqiu' },
+                { id: 1, title: 'Wrold Cup 2018', url: 'http://tiyu.baidu.com/match/%E4%B8%96%E7%95%8C%E6%9D%AF' },
             ]
         }
     }
