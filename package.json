@@ -6,7 +6,8 @@
 		"start": "node node_modules/react-native/local-cli/cli.js start",
 		"test": "jest",
 		"release": "cd android && ./gradlew clean && ./gradlew assembleRelease && cd ..",
-		"publish:fir": "docker run -e API_TOKEN=21ccf6e7112469053d4aa7d6ca47187f -v D:/Workspace/rn/fpm-app-reactnative/android/app/build/outputs/apk/app-release.apk:/release.apk firhq/fir-cli:latest publish /release.apk"
+		"win:publish:fir": "docker run -e API_TOKEN=21ccf6e7112469053d4aa7d6ca47187f -v D:/Workspace/rn/fpm-app-reactnative/android/app/build/outputs/apk/app-release.apk:/release.apk firhq/fir-cli:latest publish /release.apk",
+		"mac:publish:fir": "docker run -e API_TOKEN=21ccf6e7112469053d4aa7d6ca47187f -v /Users/yfsoft/Product/fpm_app_reactnative/android/app/build/outputs/apk/app-release.apk:/release.apk firhq/fir-cli:latest publish /release.apk"
 	},
 	"dependencies": {
 		"dayjs": "^1.6.4",

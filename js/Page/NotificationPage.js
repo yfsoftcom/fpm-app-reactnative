@@ -5,12 +5,13 @@ import {
     Text,
     View,
     TouchableNativeFeedback,
-} from 'react-native';
+} from 'react-native'
 
 import BasePage from './BasePage'
 import Line from '../Component/Line'
 import { colors } from '../styles'
 import fpmc from 'yf-fpm-client-js'
+import dayjs from 'dayjs'
 
 class ListItem extends React.PureComponent {
     _onPress = () => {
@@ -24,11 +25,11 @@ class ListItem extends React.PureComponent {
         >
             <View style={ styles.postItem } {...this.props}>
                 <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
-                    <Text style={ styles.itemAuthor }>{ this.props.author || '无名氏' }</Text>
-                    <Text style={ styles.itemCategory }>{ this.props.category || '默认分类' }</Text>
+                    <Text style={ styles.itemAuthor }>{ this.props.author || '推送' }</Text>
+                    <Text style={ styles.itemCategory }>{ dayjs(this.props.createAt).format('HH:mm:ss') || '刚刚' }</Text>
                 </View>
                 <Text style={ styles.itemTitle }>{ this.props.title }</Text>
-                <Text style={ styles.itemSummary}>{ this.props.summary }</Text>
+                <Text style={ styles.itemSummary}>{ this.props.content }</Text>
             </View>
         </TouchableNativeFeedback>
       )
@@ -45,7 +46,7 @@ export default class NotificationPage extends BasePage {
         this.state = {
             refreshing: false,
             data: [
-                { id: 1, title: 'NA', summary: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
+                { id: 1, title: 'NA', content: 'fdasjnnk jklvjkl jklbjkl jklb;jk ljkb'},
             ]
         }
     }
@@ -57,26 +58,18 @@ export default class NotificationPage extends BasePage {
 
     _onPressItem = (item) => {
         const { navigate } = this.props.navigation
-        navigate('blankText', { title: item.title, content: item.summary })
+        navigate('blankText', { title: item.title, content: item.content })
     };
 
     _onFresh = () => {
         this.setState({
             refreshing: true,
         })
-        new fpmc.Func('faker.getList')
-        .invoke({fields: {
-            category: 'lorem.word',
-            title: 'lorem.slug',
-            date: 'date.future',
-            image: 'image.avatar',
-            summary: 'lorem.text',
-            author: 'name.firstName',
-            id: 'random.uuid',
-          }})
+        new fpmc.Func('jpush.getRecords')
+        .invoke({ limit: 20, skip: 0})
         .then(data=>{
             this.setState({
-                data: data.data,
+                data: data.data.rows,
                 refreshing: false,
             })
         })
