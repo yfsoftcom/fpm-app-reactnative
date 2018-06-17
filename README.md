@@ -1,6 +1,7 @@
 ## TODO List
-- [ ] get posts page
-- [ ] show notification 
+- [x] get posts page
+- [x] show notification 
+- [ ] hide tabbar when in detail page
 
 ## ISSUES
 

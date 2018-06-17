@@ -2,11 +2,12 @@ import React, { Component } from 'react';
 import {
     TabBarIOS,
     Image,
+    Text,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/FontAwesome'
 
 import { layout, colors } from './styles'
-import { HomeStack, NotificationStack, SettingStack, PostStack } from './Nav'
+import { HomeStack, NotificationStack, SettingStack, PostStack, PluginStack } from './Nav'
 import { createBottomTabNavigator, TabBarBottom } from 'react-navigation'
 
 
@@ -14,6 +15,7 @@ export default createBottomTabNavigator(
     {
         Console: HomeStack,
         Post: PostStack,
+        Plugin: PluginStack,
         Notification: NotificationStack,
         Setting: SettingStack,
     },
@@ -28,10 +30,13 @@ export default createBottomTabNavigator(
                         iconName = 'home'
                         break
                     case 'Post':
-                        iconName = 'file'
+                        iconName = 'clone'
                         break
                     case 'Setting':
                         iconName = 'cogs'
+                        break
+                    case 'Plugin':
+                        iconName = 'plug'
                         break
                     case 'Notification':
                         iconName = 'envelope'

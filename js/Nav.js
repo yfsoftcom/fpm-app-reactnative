@@ -8,6 +8,7 @@ import WebViewPage from './Page/WebViewPage'
 import NotificationPage from './Page/NotificationPage'
 import SettingPage from './Page/SettingPage'
 import PostPage from './Page/PostPage'
+import PluginPage from './Page/PluginPage'
 import BlankTextPage from './Page/BlankTextPage'
 /**
  *页面列表
@@ -19,6 +20,7 @@ const PageList = {
   notification: { screen: NotificationPage },
   setting: { screen: SettingPage },
   post: { screen: PostPage },
+  plugin: { screen: PluginPage },
 };
 
 /**
@@ -44,3 +46,5 @@ export const NotificationStack = StackNavigator (PageList, NavigatorConfig('noti
 export const SettingStack = StackNavigator (PageList, NavigatorConfig('setting'));
 
 export const PostStack = StackNavigator (PageList, NavigatorConfig('post'));
+
+export const PluginStack = StackNavigator (PageList, NavigatorConfig('plugin'));
