@@ -21,7 +21,7 @@ export default class SettingPage extends BasePage {
     constructor(props) {
         super(props);
         this.state = {
-            headpic: 'https://thumbnail10.baidupcs.com/thumbnail/4d377cdba7590affadb83766afac4b65?fid=1378231486-250528-404993797863139&rt=pr&sign=FDTAER-DCb740ccc5511e5e8fedcff06b081203-QChf0C1y7S9kM56U1zaxvVbg06g%3d&expires=8h&chkbd=0&chkv=0&dp-logid=3814652769215272643&dp-callid=0&time=1528945200&size=c256_u256&quality=90&vuk=1378231486&ft=image',
+            headpic: 'https://gitee.com/uploads/6/333306_yfsoft.png',
             sections: [
             ]
         }

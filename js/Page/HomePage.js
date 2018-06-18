@@ -9,7 +9,6 @@ import {
     TouchableNativeFeedback
 } from 'react-native';
 
-import JPushModule from 'jpush-react-native'
 import BasePage from './BasePage'
 import Line from '../Component/Line'
 import dayjs from 'dayjs'
@@ -29,7 +28,7 @@ export default class HomePage extends BasePage {
                 {
                     title: 'Server', data: [
                         { key: 'StartAt', val: '-'},
-                        { key: 'Version', val: '-'},                        
+                        { key: 'Version', val: '-'},
                     ]
                 },
             ],
@@ -41,55 +40,6 @@ export default class HomePage extends BasePage {
     };
 
     componentDidMount(){
-        const { navigate } = this.props.navigation
-        if (Platform.OS === 'android') {
-          JPushModule.initPush()
-          JPushModule.getInfo(map => {
-            this.setState({
-              appkey: map.myAppKey,
-              imei: map.myImei,
-              package: map.myPackageName,
-              deviceId: map.myDeviceId,
-              version: map.myVersion
-            })
-          })
-          JPushModule.notifyJSDidLoad(resultCode => {
-            if (resultCode === 0) {
-            }
-          })
-        } else {
-          JPushModule.setupPush()
-        }
-    
-        // JPushModule.addReceiveCustomMsgListener(map => {
-        //   this.setState({
-        //     pushMsg: map.message
-        //   })
-        //   console.log('extras: ' + map.extras)
-        // })
-    
-        // JPushModule.addReceiveNotificationListener(map => {
-        //   console.log('alertContent: ' + map.alertContent)
-        //   console.log('extras: ' + map.extras)
-        //   // var extra = JSON.parse(map.extras);
-        //   // console.log(extra.key + ": " + extra.value);
-        // })
-    
-        JPushModule.addReceiveOpenNotificationListener(map => {
-          const extras = JSON.parse(map.extras)
-          navigate('blankText', { title: 'Notification Info', content: map.alertContent })
-        //   alert(JSON.stringify(map))
-        //   alert(map.alertContent)
-          // console.log('Opening notification!')
-          // console.log('map.extra: ' + map.extras)
-          // this.jumpSecondActivity()
-          // JPushModule.jumpToPushActivity("SecondActivity");
-        })
-    
-        JPushModule.addGetRegistrationIdListener(registrationId => {
-          console.log('Device register succeed, registrationId ' + registrationId)
-        })
-
         this.getSystemInfo()
       }
 

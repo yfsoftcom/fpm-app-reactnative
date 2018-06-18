@@ -13,6 +13,8 @@ import { colors } from '../styles'
 import fpmc from 'yf-fpm-client-js'
 import dayjs from 'dayjs'
 
+import Ionicons from 'react-native-vector-icons/Ionicons'
+
 class ListItem extends React.PureComponent {
     _onPress = () => {
         this.props.onPressItem(this.props);
@@ -39,6 +41,9 @@ class ListItem extends React.PureComponent {
 export default class NotificationPage extends BasePage {
     static navigationOptions = {
         title: 'Notification',
+        drawerIcon: ({tintColor}) => (
+            <Ionicons name={ 'ios-home' } size={ 24 } color={ tintColor }/>
+        )
     }
     // 初始化模拟数据
     constructor(props) {
