@@ -1,16 +1,14 @@
-/**
- * MonkeyNews
- *
- * author: xietao3
- *
- * blog: xietao3.com
- */
-
 'use strict';
 
 import {
     StyleSheet,
 } from 'react-native';
+
+export const layout = {
+    tabBarHeight:49,
+    bottomLineHeight:0.5,
+    swiperHeight:200,
+}
 
 export const colors = {
     lightGray: '#F0F0F0',
@@ -30,7 +28,45 @@ export const colors = {
     pageBackgroundColor: '#ffffff',
     bottomLineColor:'#bfbfbf',
 };
+export const defaultFlatListStyle = StyleSheet.create({
+    postItem: {
+        backgroundColor: colors.white,
+        paddingTop: 10,
+        paddingRight: 10,
+        paddingLeft: 10,
+        paddingBottom: 20,
+        flex: 1,
+        marginTop: 6,
+    },
+    itemAuthor: {
+        lineHeight: 14,
+        flex: 1,
+        height: 14,
+        fontSize: 12,
+        color: colors.textGray,
+        marginBottom: 6,
+    },
+    itemTime: {
+        lineHeight: 12,
+        flex: 1,
+        height: 12,
+        fontSize: 12,
+        color: colors.textGray,
+        textAlign: 'right',
+    },
+    itemTitle: {
+        fontSize: 18,
+        fontWeight: 'bold',
+        color: colors.textBlack,
+        lineHeight: 22,
 
+    },
+    itemSummary: {
+        fontSize: 14,
+        color: colors.textGray,
+        lineHeight: 18,
+    }
+})
 const commonStyles = StyleSheet.create({
     container: {
         flex: 1,
@@ -68,14 +104,7 @@ const commonStyles = StyleSheet.create({
         backgroundColor: colors.blue,
         borderRadius: 6,
         marginTop:20,
-    }
+    },
 });
 
-export const layout = {
-    tabBarHeight:49,
-    bottomLineHeight:0.5,
-    swiperHeight:200,
-}
-
-
-export default commonStyles;
+export default commonStyles

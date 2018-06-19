@@ -9,7 +9,7 @@ import {
 
 import BasePage from './BasePage'
 import Line from '../Component/Line'
-import { colors } from '../styles'
+import { defaultFlatListStyle, colors } from '../styles'
 import fpmc from 'yf-fpm-client-js'
 import dayjs from 'dayjs'
 
@@ -25,13 +25,13 @@ class ListItem extends React.PureComponent {
         <TouchableNativeFeedback
           onPress={this._onPress}
         >
-            <View style={ styles.postItem } {...this.props}>
+            <View style={ defaultFlatListStyle.postItem } {...this.props}>
                 <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
-                    <Text style={ styles.itemAuthor }>{ this.props.author || '推送' }</Text>
-                    <Text style={ styles.itemCategory }>{ dayjs(this.props.createAt).format('HH:mm:ss') || '刚刚' }</Text>
+                    <Text style={ defaultFlatListStyle.itemAuthor }>{ this.props.author || '系统推送' }</Text>
+                    <Text style={ defaultFlatListStyle.itemTime }>{ dayjs(this.props.createAt).format('MM-DD HH:mm') || '刚刚' }</Text>
                 </View>
-                <Text style={ styles.itemTitle }>{ this.props.title }</Text>
-                <Text style={ styles.itemSummary}>{ this.props.content }</Text>
+                <Text style={ defaultFlatListStyle.itemTitle }>{ this.props.title }</Text>
+                <Text style={ defaultFlatListStyle.itemSummary}>{ this.props.content }</Text>
             </View>
         </TouchableNativeFeedback>
       )
@@ -109,41 +109,3 @@ export default class NotificationPage extends BasePage {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    postItem: {
-        backgroundColor: colors.white,
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingLeft: 10,
-        paddingBottom: 20,
-        flex: 1,
-        marginTop: 6,
-    },
-    itemAuthor: {
-        lineHeight: 14,
-        flex: 1,
-        height: 14,
-        color: '#333',
-        marginBottom: 6,
-    },
-    itemCategory: {
-        lineHeight: 14,
-        flex: 1,
-        height: 14,
-        color: colors.textGray,
-        textAlign: 'right',
-    },
-    itemTitle: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: colors.textBlack,
-        lineHeight: 24,
-
-    },
-    itemSummary: {
-        fontSize: 14,
-        color: colors.textGray,
-        lineHeight: 18,
-    }
-})

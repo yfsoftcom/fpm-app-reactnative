@@ -10,7 +10,7 @@ import {
 
 import BasePage from './BasePage'
 import Line from '../Component/Line'
-import commonStyles, { colors } from '../styles'
+import { defaultFlatListStyle, colors } from '../styles'
 import fpmc from 'yf-fpm-client-js'
 
 class ListItem extends React.PureComponent {
@@ -24,9 +24,13 @@ class ListItem extends React.PureComponent {
           onPress={this._onPress}
         >
             <View
-                style={ styles.postItem }
+                style={ defaultFlatListStyle.postItem }
                 {...this.props}>
-                <Text style={ styles.itemTitle }>{ this.props.title }</Text>
+                <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
+                    <Text style={ defaultFlatListStyle.itemAuthor }>{ this.props.author || 'System Plugin' }</Text>
+                    <Text style={ defaultFlatListStyle.itemTime }>{ '' }</Text>
+                </View>
+                <Text style={ defaultFlatListStyle.itemTitle }>{ this.props.title }</Text>
             </View>
         </TouchableNativeFeedback>
       )
@@ -90,41 +94,3 @@ export default class PluginPage extends BasePage {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    postItem: {
-        backgroundColor: colors.white,
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingLeft: 10,
-        paddingBottom: 20,
-        flex: 1,
-        marginTop: 6,
-    },
-    itemAuthor: {
-        lineHeight: 14,
-        flex: 1,
-        height: 14,
-        color: '#333',
-        marginBottom: 6,
-    },
-    itemCategory: {
-        lineHeight: 14,
-        flex: 1,
-        height: 14,
-        color: colors.textGray,
-        textAlign: 'right',
-    },
-    itemTitle: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: colors.textBlack,
-        lineHeight: 24,
-
-    },
-    itemSummary: {
-        fontSize: 14,
-        color: colors.textGray,
-        lineHeight: 18,
-    }
-})
