@@ -10,7 +10,7 @@ import {
 
 import BasePage from './BasePage'
 import Line from '../Component/Line'
-import commonStyles, { colors } from '../styles'
+import commonStyles, { defaultFlatListStyle, colors } from '../styles'
 import fpmc from 'yf-fpm-client-js'
 
 class PostItem extends React.PureComponent {
@@ -24,14 +24,14 @@ class PostItem extends React.PureComponent {
           onPress={this._onPress}
         >
             <View
-            style={ styles.postItem }
+            style={ defaultFlatListStyle.postItem }
             {...this.props}>
             <View style={{ flex: 1, flexDirection: 'row', marginBottom: 10 }}>
-                <Text style={ styles.itemAuthor }>{ this.props.author || '无名氏' }</Text>
-                <Text style={ styles.itemCategory }>{ this.props.category || '默认分类' }</Text>
+                <Text style={ defaultFlatListStyle.itemAuthor }>{ this.props.author || '无名氏' }</Text>
+                <Text style={ defaultFlatListStyle.itemCategory }>{ this.props.category || '默认分类' }</Text>
             </View>
-            <Text style={ styles.itemTitle }>{ this.props.title }</Text>
-            <Text style={ styles.itemSummary}>{ this.props.summary }</Text>
+            <Text style={ defaultFlatListStyle.itemTitle }>{ this.props.title }</Text>
+            <Text style={ defaultFlatListStyle.itemSummary}>{ this.props.summary }</Text>
             </View>
         </TouchableNativeFeedback>
       )
@@ -117,41 +117,3 @@ export default class PostPage extends BasePage {
         )
     }
 }
-
-const styles = StyleSheet.create({
-    postItem: {
-        backgroundColor: colors.white,
-        paddingTop: 10,
-        paddingRight: 10,
-        paddingLeft: 10,
-        paddingBottom: 20,
-        flex: 1,
-        marginTop: 6,
-    },
-    itemAuthor: {
-        lineHeight: 14,
-        flex: 1,
-        height: 14,
-        color: '#333',
-        marginBottom: 6,
-    },
-    itemCategory: {
-        lineHeight: 14,
-        flex: 1,
-        height: 14,
-        color: colors.textGray,
-        textAlign: 'right',
-    },
-    itemTitle: {
-        fontSize: 22,
-        fontWeight: 'bold',
-        color: colors.textBlack,
-        lineHeight: 24,
-
-    },
-    itemSummary: {
-        fontSize: 14,
-        color: colors.textGray,
-        lineHeight: 18,
-    }
-})
