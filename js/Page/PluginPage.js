@@ -48,6 +48,7 @@ export default class PluginPage extends BasePage {
             refreshing: false,
             data: [
                 { id: 1, title: 'Wrold Cup 2018', url: 'http://tiyu.baidu.com/match/%E4%B8%96%E7%95%8C%E6%9D%AF' },
+                { id: 2, title: 'Wrold Cup 2018 Lottery', url: 'http://2018.yunplus.io/lottery' },
             ]
         }
     }
