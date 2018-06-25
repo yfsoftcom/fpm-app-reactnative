@@ -7,7 +7,7 @@ import {
     H3,
     TouchableNativeFeedback,
 } from 'react-native';
-
+import _ from 'lodash'
 import BasePage from './BasePage'
 import Line from '../Component/Line'
 import { defaultFlatListStyle, colors } from '../styles'
@@ -68,8 +68,26 @@ export default class PluginPage extends BasePage {
 
     _onFresh = () => {
         this.setState({
-            refreshing: false,
-         })
+            refreshing: true,
+        })
+        new fpmc.Query('api_app')
+        .condition({appenvironment: 'product', apptype: 'web', status: 1})
+        .find()
+        .then(data=>{
+            const rows = _.map(data, (item) => {
+                return {url: item.appurl, title: item.appname, id: item.id}
+            })
+            this.setState({
+                data: rows,
+                refreshing: false,
+            })
+        })
+        .catch(e => {
+            this.setState({
+               refreshing: false,
+            })
+            alert(e.message || 'Error')
+        })
     }
     _renderItem = ({item}) => (
         <ListItem
